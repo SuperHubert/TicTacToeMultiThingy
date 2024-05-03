@@ -1,0 +1,15 @@
+﻿  GameData.cpp
+C:\Users\h.ramiandrasoa\Desktop\Cours\cpp\MorpionMultiJoueurThreading\ConsoleApplication1\ConsoleApplication1\GameData.h(11,7): error C2039: 'byte': is not a member of 'std'
+  (compiling source file 'GameData.cpp')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stddef.h(23,15):
+  see declaration of 'std'
+  
+C:\Users\h.ramiandrasoa\Desktop\Cours\cpp\MorpionMultiJoueurThreading\ConsoleApplication1\ConsoleApplication1\GameData.h(11,12): error C3646: 'grid': unknown override specifier
+  (compiling source file 'GameData.cpp')
+  
+C:\Users\h.ramiandrasoa\Desktop\Cours\cpp\MorpionMultiJoueurThreading\ConsoleApplication1\ConsoleApplication1\GameData.h(11,16): error C2143: syntax error: missing ',' before '['
+  (compiling source file 'GameData.cpp')
+  
+C:\Users\h.ramiandrasoa\Desktop\Cours\cpp\MorpionMultiJoueurThreading\ConsoleApplication1\ConsoleApplication1\GameData.h(11,19): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'GameData.cpp')
+  

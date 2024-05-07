@@ -106,6 +106,8 @@ sf::RenderWindow* ModelDisplayer::GetWindow()
 
 void ModelDisplayer::UpdateScreen(Model* model)
 {
+	std::cout << "UpdateScreen" << std::endl;
+
 	window->clear();
 
 	window->draw(*winnerText);

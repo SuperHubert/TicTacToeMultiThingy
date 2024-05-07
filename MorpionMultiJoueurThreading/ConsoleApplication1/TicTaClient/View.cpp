@@ -15,9 +15,18 @@ View::~View()
 	delete controller;
 }
 
+void UpdateScreen(ModelDisplayer* modelDisplayer, Model* model)
+{
+	modelDisplayer->UpdateScreen(model);
+	std::cout << "UpdateScreen" << std::endl;
+	return;
+}
+
 void View::SetController(Controller* controller)
 {
 	this->controller = controller;
+
+	controller->SetModelDisplayer(modelDisplayer);
 }
 
 void View::Run()
@@ -28,6 +37,8 @@ void View::Run()
 		return;
 	}
 
+	modelDisplayer->UpdateScreen(controller->GetModel());
+
 	while (window->isOpen())
 	{
 		sf::Event event;
@@ -36,6 +47,7 @@ void View::Run()
 			if (event.type == sf::Event::Closed)
 			{
 				window->close();
+				return;
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

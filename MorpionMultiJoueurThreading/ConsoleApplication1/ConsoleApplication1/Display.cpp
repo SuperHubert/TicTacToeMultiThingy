@@ -90,40 +90,19 @@ void Display::DisplayCross(int x, int y, int length)
 {
 	int x_corner = x - (CELL_SIZE / 2.0f);
 	int y_corner = y - (CELL_SIZE / 2.0f);
-	int y_corner2 = y_corner+CELL_SIZE - CROSS_THICKNESS;
+	int y_corner2 = y_corner + CELL_SIZE - CROSS_THICKNESS;
 
 	sf::RectangleShape line1(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
-	line1.setPosition(x_corner +19, y_corner+14);
+	line1.setPosition(x_corner + 19, y_corner+ 14); // use constants instead of magic numbers
 	line1.rotate(45);
 	line1.setFillColor(sf::Color::Red);
 	window->draw(line1);
 	
 	sf::RectangleShape line2(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
-	line2.setPosition(x_corner+12, y_corner2-8);
+	line2.setPosition(x_corner+ 12, y_corner2 - 8); // use constants instead of magic numbers
 	line2.rotate(-45);
 	line2.setFillColor(sf::Color::Red);
 	window->draw(line2);
-
-	/*sf::RectangleShape line1(sf::Vector2f(length, CROSS_THICKNESS));
-	line1.setPosition(x_corner, y_corner);
-	line1.setRotation(45);
-	line1.setFillColor(sf::Color::Red);
-	window->draw(line1);
-
-	sf::RectangleShape line2(sf::Vector2f(length, CROSS_THICKNESS));
-	line2.setPosition(x_corner, y_corner2);
-	line2.setRotation(-45);
-	line2.setFillColor(sf::Color::Red);
-	window->draw(line2);
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		sf::RectangleShape line1(sf::Vector2f(length/2, CROSS_THICKNESS));
-		line1.setFillColor(sf::Color::Green);
-		line1.setPosition(x, y);
-		line1.setRotation(45+i*90);
-		window->draw(line1);
-	}*/
 }
 
 void Display::SetCurrentPlayerText(GameData* data)

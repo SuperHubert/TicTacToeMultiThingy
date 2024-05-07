@@ -9,6 +9,7 @@ public:
 protected:
 	int grid[9];
 	int currentPlayer;
+	int currentTurn;
 	int winner;
 	
 public:
@@ -18,6 +19,7 @@ public:
 	void NextPlayer();
 	int GetCurrentPlayer();
 	int GetWinner();
+	int GetCurrentTurn();
 	void SetWinner();
 	void Reset();
 	void CheckDraw();

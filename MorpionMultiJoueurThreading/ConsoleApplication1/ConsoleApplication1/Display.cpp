@@ -8,7 +8,8 @@ Display::Display()
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
 	firstPlayerNameText = new sf::Text();
 	secondPlayerNameText = new sf::Text();
-	currentPlayerNameText = new sf::Text();
+	winnerText = new sf::Text();
+	currentTurnText = new sf::Text();
 
 	if (!font.loadFromFile("arial.ttf"))
 	{
@@ -16,25 +17,19 @@ Display::Display()
 		return;
 	}
 
-	firstPlayerNameText->setFont(font);
-	secondPlayerNameText->setFont(font);
-	currentPlayerNameText->setFont(font);
+	auto setupText = [&](sf::Text* text,const char* str,int x, int y, int size)
+	{
+		text->setFont(font);
+		text->setString(str);
+		text->setCharacterSize(size);
+		text->setPosition(x, y);
+		text->setFillColor(sf::Color::White);
+	};
 
-	firstPlayerNameText->setString("Player 1");
-	secondPlayerNameText->setString("Player 2");
-	currentPlayerNameText->setString("Player 1's turn");
-
-	firstPlayerNameText->setCharacterSize(24);
-	secondPlayerNameText->setCharacterSize(24);
-	currentPlayerNameText->setCharacterSize(24);
-
-	firstPlayerNameText->setPosition(0, 0);
-	secondPlayerNameText->setPosition(0, 24);
-	currentPlayerNameText->setPosition(0, 48);
-
-	firstPlayerNameText->setFillColor(sf::Color::White);
-	secondPlayerNameText->setFillColor(sf::Color::White);
-	currentPlayerNameText->setFillColor(sf::Color::White);
+	setupText(firstPlayerNameText, "Player 1", 0, 0, 24);
+	setupText(secondPlayerNameText, "Player 2", 0, 24, 24);
+	setupText(winnerText, "Player 1's turn", 0, 72, 24);
+	setupText(currentTurnText, "Current Turn: 0", 0, 48, 24);
 }
 
 Display::~Display()
@@ -42,7 +37,7 @@ Display::~Display()
 	delete window;
 	delete firstPlayerNameText;
 	delete secondPlayerNameText;
-	delete currentPlayerNameText;
+	delete winnerText;
 }
 
 void Display::DisplayGrid()
@@ -111,14 +106,27 @@ void Display::SetCurrentPlayerText(GameData* data)
 
 	if (winner != -1)
 	{
-		currentPlayerNameText->setString(winner == 3 ? "DRAW !!!" : winner == 2 ? "GG to player 2" : "GG to player 1");
+		winnerText->setString(winner == 3 ? "DRAW !!!" : winner == 2 ? "GG to player 2" : "GG to player 1");
 		return;
 	}
 
-	std::string player = data->GetCurrentPlayer() == 0 ? "Player 1" : "Player 2";
-	player.append("'s turn");
+	winnerText->setString("");
+}
 
-	currentPlayerNameText->setString(player);
+void Display::SetCurrentTurnText(GameData* data)
+{
+	std::string turn = "Current Turn: ";
+	turn.append(std::to_string(data->GetCurrentTurn()));
+
+	if (data->GetWinner() == -1)
+	{
+		std::string player = " (";
+		player.append(data->GetCurrentPlayer() == 0 ? "Player 1" : "Player 2");
+		player.append("'s turn)");
+		turn.append(player);
+	}
+	
+	currentTurnText->setString(turn);
 }
 
 sf::RenderWindow* Display::GetWindow()
@@ -135,7 +143,9 @@ void Display::UpdateScreen(GameData* data)
 	window->draw(*firstPlayerNameText);
 	window->draw(*secondPlayerNameText);
 	SetCurrentPlayerText(data);
-	window->draw(*currentPlayerNameText);
+	window->draw(*winnerText);
+	SetCurrentTurnText(data);
+	window->draw(*currentTurnText);
 
 	DisplayGrid();
 

@@ -1,8 +1,10 @@
 #include "GameData.h"
+#include <iostream>
 
 GameData::GameData()
 {
 	currentPlayer = 0;
+	currentTurn = 0;
 	winner = -1;
 	for (size_t i = 0; i < 9; i++)
 	{
@@ -26,7 +28,10 @@ void GameData::SetCell(int x, int y, int value)
 
 void GameData::NextPlayer()
 {
-	currentPlayer = currentPlayer == 0 ? 1 : 0;
+	currentTurn++;
+	std::cout << "Next Player "<< currentTurn << std::endl;
+	currentPlayer = currentTurn % 2;
+	//currentPlayer = currentPlayer == 0 ? 1 : 0;
 }
 
 int GameData::GetCurrentPlayer()
@@ -39,8 +44,19 @@ int GameData::GetWinner()
 	return winner;
 }
 
+int GameData::GetCurrentTurn()
+{
+	return currentTurn;
+}
+
 void GameData::SetWinner()
 {
+	if (currentTurn < 4)
+	{
+		winner = -1;
+		return;
+	}
+
 	auto check = [&](int a, int b, int c)
 		{
 			return (grid[a] == grid[b] && grid[b] == grid[c] && grid[a] != -1) ? grid[a] : -1;
@@ -80,6 +96,7 @@ void GameData::SetWinner()
 void GameData::Reset()
 {
 	currentPlayer = 0;
+	currentTurn = 0;
 	winner = -1;
 	for (size_t i = 0; i < 9; i++)
 	{

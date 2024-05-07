@@ -25,7 +25,8 @@ protected:
 	sf::Font font;
 	sf::Text* firstPlayerNameText;
 	sf::Text* secondPlayerNameText;
-	sf::Text* currentPlayerNameText;
+	sf::Text* winnerText;
+	sf::Text* currentTurnText;
 
 	sf::FloatRect cellBounds[9];
 
@@ -33,6 +34,7 @@ protected:
 	void DisplayCircle(int x, int y, int radius);
 	void DisplayCross(int x, int y, int length);
 	void SetCurrentPlayerText(GameData* data);
+	void SetCurrentTurnText(GameData* data);
 
 public:
 	sf::RenderWindow* GetWindow();

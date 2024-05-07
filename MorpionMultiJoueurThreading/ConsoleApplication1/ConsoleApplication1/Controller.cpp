@@ -23,9 +23,9 @@ void Controller::HandleInput(int x, int y,GameData* data,Display* display)
 
 	std::cout << "Player " << id << " clicked cell " << cell << std::endl;
 
-	if (cell != -1 && data->GetCell(cell) == -1)
+	if (cell != -1 && data->IsCellEmpty(cell))
 	{
 		data->SetCell(cell, id);
-		data->NextPlayer();
+		data->SetCurrentTurn(data->GetCurrentTurn()+1);
 	}
 }

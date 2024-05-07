@@ -10,7 +10,6 @@ GameData::GameData()
 	{
 		grid[i] = -1;
 	}
-
 }
 
 GameData::~GameData()
@@ -26,12 +25,10 @@ void GameData::SetCell(int x, int y, int value)
 {
 }
 
-void GameData::NextPlayer()
+void GameData::SetCurrentTurn(int value)
 {
-	currentTurn++;
-	std::cout << "Next Player "<< currentTurn << std::endl;
+	currentTurn = value;
 	currentPlayer = currentTurn % 2;
-	//currentPlayer = currentPlayer == 0 ? 1 : 0;
 }
 
 int GameData::GetCurrentPlayer()
@@ -49,7 +46,7 @@ int GameData::GetCurrentTurn()
 	return currentTurn;
 }
 
-void GameData::SetWinner()
+void GameData::RefreshWinner()
 {
 	if (currentTurn < 4)
 	{
@@ -125,4 +122,9 @@ void GameData::CheckDraw()
 int GameData::GetCell(int index)
 {
 	return grid[index];
+}
+
+bool GameData::IsCellEmpty(int index)
+{
+	return GetCell(index) == -1;
 }

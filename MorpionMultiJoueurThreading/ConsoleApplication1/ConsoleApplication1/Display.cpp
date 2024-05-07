@@ -88,15 +88,15 @@ void Display::DisplayCross(int x, int y, int length)
 	int y_corner2 = y_corner + CELL_SIZE - CROSS_THICKNESS;
 
 	sf::RectangleShape line1(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
-	line1.setPosition(x_corner + 19, y_corner+ 14); // use constants instead of magic numbers
+	line1.setPosition(x_corner + 19, y_corner+ 14); // use length instead of magic numbers
 	line1.rotate(45);
-	line1.setFillColor(sf::Color::Red);
+	line1.setFillColor(sf::Color::White);
 	window->draw(line1);
 	
 	sf::RectangleShape line2(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
-	line2.setPosition(x_corner+ 12, y_corner2 - 8); // use constants instead of magic numbers
+	line2.setPosition(x_corner+ 12, y_corner2 - 8); // use length instead of magic numbers
 	line2.rotate(-45);
-	line2.setFillColor(sf::Color::Red);
+	line2.setFillColor(sf::Color::White);
 	window->draw(line2);
 }
 

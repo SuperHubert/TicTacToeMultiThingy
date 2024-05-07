@@ -14,13 +14,14 @@ protected:
 	
 public:
 	int GetCell(int index);
+	bool IsCellEmpty(int index);
 	void SetCell(int index, int value);
 	void SetCell(int x,int y, int value);
-	void NextPlayer();
+	void SetCurrentTurn(int value);
 	int GetCurrentPlayer();
 	int GetWinner();
 	int GetCurrentTurn();
-	void SetWinner();
+	void RefreshWinner();
 	void Reset();
 	void CheckDraw();
 };

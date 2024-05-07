@@ -43,7 +43,7 @@ void Core::Run()
 				auto player = gameData.GetCurrentPlayer() == 1 ? player2 : player1;
 				auto mousePos = sf::Mouse::getPosition(*window);
 				player.HandleInput(mousePos.x, mousePos.y, &gameData, &display);
-				gameData.SetWinner();
+				gameData.RefreshWinner();
 				gameData.CheckDraw();
 				display.UpdateScreen(&gameData);
 			}

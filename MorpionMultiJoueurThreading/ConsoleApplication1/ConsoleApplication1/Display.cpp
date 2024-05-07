@@ -128,11 +128,11 @@ void Display::DisplayCross(int x, int y, int length)
 
 void Display::SetCurrentPlayerText(GameData* data)
 {
-	auto winning = data->GetWinner() != -1;
+	int winner = data->GetWinner();
 
-	if (winning)
+	if (winner != -1)
 	{
-		currentPlayerNameText->setString("GG");
+		currentPlayerNameText->setString(winner == 3 ? "DRAW !!!" : winner == 2 ? "GG to player 2" : "GG to player 1");
 		return;
 	}
 

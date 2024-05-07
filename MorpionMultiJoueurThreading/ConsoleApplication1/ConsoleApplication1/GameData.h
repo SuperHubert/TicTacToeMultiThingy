@@ -9,6 +9,7 @@ public:
 protected:
 	int grid[9];
 	int currentPlayer;
+	int winner;
 	
 public:
 	int GetCell(int index);
@@ -17,5 +18,8 @@ public:
 	void NextPlayer();
 	int GetCurrentPlayer();
 	int GetWinner();
+	void SetWinner();
+	void Reset();
+	void CheckDraw();
 };
 

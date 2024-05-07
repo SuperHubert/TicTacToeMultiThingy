@@ -21,11 +21,6 @@ Core::~Core()
 
 void Core::Init()
 {
-	//gameData.SetCell(1, 1);
-	//gameData.SetCell(2, 1);
-
-	std::cout << gameData.GetWinner() << std::endl;
-
 	auto window = display.GetWindow();
 
 	display.UpdateScreen(&gameData);
@@ -48,6 +43,14 @@ void Core::Run()
 				auto player = gameData.GetCurrentPlayer() == 1 ? player2 : player1;
 				auto mousePos = sf::Mouse::getPosition(*window);
 				player.HandleInput(mousePos.x, mousePos.y, &gameData, &display);
+				gameData.SetWinner();
+				gameData.CheckDraw();
+				display.UpdateScreen(&gameData);
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			{
+				gameData.Reset();
 				display.UpdateScreen(&gameData);
 			}
 		}

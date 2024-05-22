@@ -12,12 +12,14 @@ public:
 
 protected:
 	char grid[9];
-	char currentPlayer = 0;
+	char currentPlayer = '1';
+	char version = 0;
 
 public:
-	void SetValues(std::string state);
+	char GetVersion();
 
-	int GetCell(int index);
+	void SetValues(std::string state);
+	char GetCell(int index);
 	bool IsCellEmpty(int index);
 	int GetCurrentPlayer();
 	int GetWinner();

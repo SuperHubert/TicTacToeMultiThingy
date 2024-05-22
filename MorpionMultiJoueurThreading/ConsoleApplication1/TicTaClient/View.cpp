@@ -56,7 +56,10 @@ void View::Run()
 	f1();
 	*/
 
-	modelDisplayer->UpdateScreen(controller->GetModel());
+	Model* model = controller->GetModel();
+
+	char version = model->GetVersion();
+	modelDisplayer->UpdateScreen(model);
 
 	while (window->isOpen())
 	{
@@ -83,6 +86,12 @@ void View::Run()
 			{
 				controller->RequestReset();
 			}
+		}
+
+		if (model->GetVersion() != version)
+		{
+			modelDisplayer->UpdateScreen(model);
+			version = model->GetVersion();
 		}
 	}
 

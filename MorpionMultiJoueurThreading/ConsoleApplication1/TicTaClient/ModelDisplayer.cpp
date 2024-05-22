@@ -60,30 +60,36 @@ void ModelDisplayer::DisplayGrid()
 void ModelDisplayer::DisplayCircle(int x, int y, int radius)
 {
 	sf::CircleShape circle(radius);
-	circle.setFillColor(sf::Color::Transparent);
+	circle.setFillColor(sf::Color::Black);
 	circle.setOutlineColor(sf::Color::White);
 	circle.setOutlineThickness(CIRCLE_THICKNESS);
-	circle.setPosition(x, y);
-
+	circle.setPosition(x - radius, y - radius);
 	window->draw(circle);
 }
 
 void ModelDisplayer::DisplayCross(int x, int y, int length)
 {
-	sf::RectangleShape line(sf::Vector2f(length, CROSS_THICKNESS));
-	line.setFillColor(sf::Color::White);
-	line.setPosition(x, y);
+	int x_corner = x - (CELL_SIZE / 2.0f);
+	int y_corner = y - (CELL_SIZE / 2.0f);
+	int y_corner2 = y_corner + CELL_SIZE - CROSS_THICKNESS;
 
-	window->draw(line);
+	sf::RectangleShape line1(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
+	line1.setPosition(x_corner + 19, y_corner + 14); // use length instead of magic numbers
+	line1.rotate(45);
+	line1.setFillColor(sf::Color::White);
+	window->draw(line1);
 
-	line.rotate(90);
-	window->draw(line);
+	sf::RectangleShape line2(sf::Vector2f(CELL_SIZE, CROSS_THICKNESS));
+	line2.setPosition(x_corner + 12, y_corner2 - 8); // use length instead of magic numbers
+	line2.rotate(-45);
+	line2.setFillColor(sf::Color::White);
+	window->draw(line2);
 }
 
 void ModelDisplayer::SetCurrentPlayerText(Model* model)
 {
 	std::string str = "Player ";
-	str += std::to_string(model->GetCurrentPlayer() + 1);
+	str += std::to_string((model->GetCurrentPlayer()) - '0');
 	str += "'s turn";
 
 	winnerText->setString(str);
@@ -110,10 +116,12 @@ void ModelDisplayer::UpdateScreen(Model* model)
 
 	window->clear();
 
-	window->draw(*winnerText);
-	window->draw(*currentTurnText);
+	//window->draw(*winnerText);
+	//window->draw(*currentTurnText);
 
 	DisplayGrid();
+
+	std::cout << model->GetCell(0) - '0' << std::endl;
 
 	for (size_t i = 0; i < 9; i++)
 	{

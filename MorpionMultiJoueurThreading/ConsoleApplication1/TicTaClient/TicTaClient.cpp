@@ -18,7 +18,11 @@ int main()
     auto view = new View();
     view->SetController(controller);
 
-   
     RunView(view);
-    //HANDLE ViewThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)RunView, view, 0, NULL);
+
+    // TODO - add indicator if its your turn
+    // TODO - add indicator if you won
+    // TODO - add indicator if you lost
+    // TODO - add indicator if its a draw
+    // TODO - add restart mechanic
 }

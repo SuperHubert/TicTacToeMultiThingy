@@ -7,7 +7,7 @@ public:
 	~GameData();
 
 protected:
-	int grid[9];
+	int board[9];
 	int currentPlayer;
 	int currentTurn;
 	int winner;

@@ -6,12 +6,18 @@ Model::Model()
     {
 		grid[i] = 0;
 	}
-	currentPlayer = 0;
+	currentPlayer = '1';
+	version = 0;
 }
 
 Model::~Model()
 {
 
+}
+
+char Model::GetVersion()
+{
+	return version;
 }
 
 void Model::SetValues(std::string state)
@@ -24,13 +30,14 @@ void Model::SetValues(std::string state)
 
 	std::cout << "Model updated" << std::endl;
 	
+	version++;
 	//reinterpret_cast<void(*)()> (callback) ();
 }
 
-int Model::GetCell(int index)
+char Model::GetCell(int index)
 {
     if(index < 0 || index > 8) return -1;
-    return grid[index];
+    return grid[index] - '0';
 }
 
 bool Model::IsCellEmpty(int index)
@@ -50,13 +57,5 @@ int Model::GetWinner()
 
 int Model::GetCurrentTurn()
 {
-	int count = 0;
-	for (size_t i = 0; i < 9; i++)
-	{
-		if (grid[i] != 0)
-		{
-			count++;
-		}
-	}
-	return count;
+	return version;
 }

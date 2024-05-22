@@ -163,10 +163,7 @@ void Controller::RequestCellClick(int index)
 		Send(std::to_string(index), 1);
 		DWORD ResumeThread(HANDLE receiveThread);
 	}
-
 	canPlay = false;
-
-	modelDisplayer->UpdateScreen(model);
 }
 
 void Controller::RequestReset()

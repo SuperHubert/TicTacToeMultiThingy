@@ -1,4 +1,9 @@
 #pragma once
+#include <iostream>
+#include <string>
+
+class ModelDisplayer;
+
 class Model
 {
 public:
@@ -6,12 +11,11 @@ public:
 	~Model();
 
 protected:
-	int grid[9];
-	int currentTurn;
-	int winner;
+	char grid[9];
+	char currentPlayer = 0;
 
 public:
-	void SetValue(int cells[9],int turn,int player);
+	void SetValues(std::string state);
 
 	int GetCell(int index);
 	bool IsCellEmpty(int index);

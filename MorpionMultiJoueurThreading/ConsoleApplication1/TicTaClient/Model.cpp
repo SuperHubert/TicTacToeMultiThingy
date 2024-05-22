@@ -4,10 +4,9 @@ Model::Model()
 {
     for (int i = 0; i < 9; i++)
     {
-		grid[i] = -1;
+		grid[i] = 0;
 	}
-	currentTurn = 0;
-	winner = -1;
+	currentPlayer = 0;
 }
 
 Model::~Model()
@@ -15,38 +14,49 @@ Model::~Model()
 
 }
 
-void Model::SetValue(int cells[9], int turn, int player)
+void Model::SetValues(std::string state)
 {
     for (int i = 0; i < 9; i++)
     {
-		grid[i] = cells[i];
+		grid[i] = state[i];
 	}
-	currentTurn = turn;
-	winner = player;
+	currentPlayer = state[9];
+
+	std::cout << "Model updated" << std::endl;
+	
+	//reinterpret_cast<void(*)()> (callback) ();
 }
 
 int Model::GetCell(int index)
 {
-    if(index < 0 || index > 8)return -1;
+    if(index < 0 || index > 8) return -1;
     return grid[index];
 }
 
 bool Model::IsCellEmpty(int index)
 {
-    return GetCell(index) == -1;
+    return GetCell(index) == 0;
 }
 
 int Model::GetCurrentPlayer()
 {
-    return currentTurn % 2;
+    return currentPlayer;
 }
 
 int Model::GetWinner()
 {
-    return winner;
+    return currentPlayer;
 }
 
 int Model::GetCurrentTurn()
 {
-    return currentTurn;
+	int count = 0;
+	for (size_t i = 0; i < 9; i++)
+	{
+		if (grid[i] != 0)
+		{
+			count++;
+		}
+	}
+	return count;
 }

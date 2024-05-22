@@ -120,11 +120,11 @@ void ModelDisplayer::UpdateScreen(Model* model)
 		int x = (i % 3) * (CELL_SIZE + CELL_SPACING) + WIDTH / 2 - (1.5f * CELL_SIZE + CELL_SPACING) + CELL_SIZE / 2;
 		int y = (i / 3) * (CELL_SIZE + CELL_SPACING) + HEIGHT / 2 - (1.5f * CELL_SIZE + CELL_SPACING) + CELL_SIZE / 2;
 
-		if (model->GetCell(i) == 0)
+		if (model->GetCell(i) == 1)
 		{
 			DisplayCircle(x, y, CIRCLE_RADIUS);
 		}
-		else if (model->GetCell(i) == 1)
+		else if (model->GetCell(i) == 2)
 		{
 			DisplayCross(x, y, CROSS_LENGTH);
 		}

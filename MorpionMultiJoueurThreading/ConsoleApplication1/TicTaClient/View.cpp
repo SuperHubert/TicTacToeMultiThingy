@@ -29,6 +29,12 @@ void View::SetController(Controller* controller)
 	controller->SetModelDisplayer(modelDisplayer);
 }
 
+void updateScreen(ModelDisplayer* modelDisplayer, Model* model)
+{
+	std::cout << "Model update callback" << std::endl;
+	
+}
+
 void View::Run()
 {
 	if (controller == nullptr)
@@ -36,6 +42,19 @@ void View::Run()
 		std::cout << "Controller not set" << std::endl;
 		return;
 	}
+	/*
+	ModelDisplayer* displayer = modelDisplayer;
+	Model* model = controller->GetModel();
+
+	auto f1 = [displayer, model]()
+	{
+		displayer->UpdateScreen(model);
+	};
+
+	//model->callback = &f1;
+
+	f1();
+	*/
 
 	modelDisplayer->UpdateScreen(controller->GetModel());
 
@@ -50,7 +69,7 @@ void View::Run()
 				return;
 			}
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			if (event.type == sf::Event::MouseButtonReleased)
 			{
 				auto mousePos = sf::Mouse::getPosition(*window);
 				auto cell = modelDisplayer->IsInCell(mousePos.x, mousePos.y);

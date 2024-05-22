@@ -154,10 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ServerController.cpp" />
+    <ClCompile Include="ServerData.cpp" />
     <ClCompile Include="TicTaServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TicTaServer.h" />
+    <ClInclude Include="ServerController.h" />
+    <ClInclude Include="ServerData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -97,7 +97,6 @@ void ServerController::ProcessRequest(char* buffer, sockaddr_in& clientAddr)
     if (std::string(buffer).find("reset") != std::string::npos)
     {
 		ResetBoard();
-		//StartGame();
 	}
     else
     {
@@ -175,8 +174,9 @@ void ServerController::Run()
     char buffer[BUFFER_SIZE] = { 0 };
     sockaddr_in clientAddr = { 0 };
     StartGame();
+    serverData->SetShouldRestart(false);
     serverData->RefreshWinner();
-    while(serverData->GetWinner() == 0)
+    while(!serverData->GetShouldRestart())
     {
         auto clientSocket = (serverData->GetCurrentPlayer() == 1) ? firstClientSocket : secondClientSocket;
 
@@ -186,6 +186,7 @@ void ServerController::Run()
 
         ProcessRequest(buffer, clientAddr);
     }
+
 
     Run();
 }

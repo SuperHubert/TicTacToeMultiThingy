@@ -30,6 +30,7 @@ public:
 	char GetCell(int index);
 	bool IsCellEmpty(int index);
 	int GetCurrentPlayer();
+	void ResetCurrentPlayer() { currentPlayer = '1'; }
 	char GetWinner();
 	void SetWinner(char value);
 	int GetCurrentTurn();

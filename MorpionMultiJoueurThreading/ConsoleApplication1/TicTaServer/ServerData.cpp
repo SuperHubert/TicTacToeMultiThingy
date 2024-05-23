@@ -106,4 +106,14 @@ char ServerData::GetCurrentTurn()
 	return currentTurn;
 }
 
+void ServerData::SetShouldRestart(bool value)
+{
+	shouldRestart = value;
+}
+
+bool ServerData::GetShouldRestart()
+{
+	return shouldRestart;
+}
+
 

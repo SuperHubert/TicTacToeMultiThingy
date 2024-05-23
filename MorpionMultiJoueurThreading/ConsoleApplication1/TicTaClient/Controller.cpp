@@ -101,19 +101,16 @@ void Controller::Receive()
 	{
 		isReady = true;
 		model->SetWinner(3);
-		return;
 	}
 	if (changePlay)
 	{
 		model->SetCanPlay(true);
 		model->SetforceUpdate(1);
-		return;
 	}
 	if (isBoardRefresh)
 	{
 		auto state = std::string(buffer).substr(6);
 		model->SetValues(state);
-		return;
 	}
 	if (hasWinner)
 	{
@@ -122,7 +119,6 @@ void Controller::Receive()
 		model->SetWinner(winner);
 		OnEndGame();
 		model->SetforceUpdate(1);
-		return;
 	}
 }
 

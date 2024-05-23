@@ -11,6 +11,7 @@ protected:
 	char board[9] = {0};
 	char currentTurn;
 	char winner;
+	bool shouldRestart = true;
 public:
 	void SetValues(char cells[9], char turn, char player);
 
@@ -23,5 +24,8 @@ public:
 	char GetCurrentPlayer();
 	char GetWinner();
 	char GetCurrentTurn();
+
+	void SetShouldRestart(bool value);
+	bool GetShouldRestart();
 };
 

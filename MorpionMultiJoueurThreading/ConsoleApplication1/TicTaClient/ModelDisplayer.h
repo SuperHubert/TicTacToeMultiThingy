@@ -22,10 +22,12 @@ public:
 protected:
 	sf::RenderWindow* window;
 	sf::Font font;
-	sf::Text* winnerText;
+	sf::Text* playerTurnText;
 	sf::Text* currentTurnText;
 
 	sf::FloatRect cellBounds[9];
+
+	
 
 	void DisplayGrid();
 	void DisplayCircle(int x, int y, int radius);

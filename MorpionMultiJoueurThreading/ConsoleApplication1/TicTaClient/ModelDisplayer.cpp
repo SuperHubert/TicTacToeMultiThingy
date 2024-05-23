@@ -5,7 +5,7 @@
 ModelDisplayer::ModelDisplayer()
 {
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
-	winnerText = new sf::Text();
+	playerTurnText = new sf::Text();
 	currentTurnText = new sf::Text();
 
 	if (!font.loadFromFile("arial.ttf"))
@@ -23,14 +23,14 @@ ModelDisplayer::ModelDisplayer()
 			text->setFillColor(sf::Color::White);
 		};
 
-	setupText(winnerText, "Player 1's turn", 0, 0, 24);
+	setupText(playerTurnText, "Player 1's turn", 0, 0, 24);
 	setupText(currentTurnText, "Current Turn: 0", 0, 24, 24);
 }
 
 ModelDisplayer::~ModelDisplayer()
 {
 	delete window;
-	delete winnerText;
+	delete playerTurnText;
 }
 
 void ModelDisplayer::DisplayGrid()
@@ -91,9 +91,10 @@ void ModelDisplayer::SetCurrentPlayerText(Model* model)
 	std::string str = "Player ";
 	str += std::to_string((model->GetCurrentPlayer()) - '0');
 	str += "'s turn";
+	if (model->GetCanPlay()) str += " (YOU)";
 
-	winnerText->setString(str);
-	window->draw(*winnerText);
+	playerTurnText->setString(str);
+	window->draw(*playerTurnText);
 }
 
 void ModelDisplayer::SetCurrentTurnText(Model* model)

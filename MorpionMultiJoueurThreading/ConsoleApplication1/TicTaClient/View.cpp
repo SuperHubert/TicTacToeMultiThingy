@@ -88,10 +88,11 @@ void View::Run()
 			}
 		}
 
-		if (model->GetVersion() != version)
+		if (model->GetVersion() != version || model->GetforceUpdate() == 1)
 		{
 			modelDisplayer->UpdateScreen(model);
 			version = model->GetVersion();
+			model->SetforceUpdate(0);
 		}
 	}
 

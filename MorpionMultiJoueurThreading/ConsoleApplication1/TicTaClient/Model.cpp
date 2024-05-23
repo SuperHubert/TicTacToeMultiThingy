@@ -8,6 +8,7 @@ Model::Model()
 	}
 	currentPlayer = '1';
 	version = 0;
+	canPlay = false;
 }
 
 Model::~Model()
@@ -18,6 +19,16 @@ Model::~Model()
 char Model::GetVersion()
 {
 	return version;
+}
+
+bool Model::GetCanPlay()
+{
+	return canPlay;
+}
+
+void Model::SetCanPlay(bool value)
+{
+	canPlay = value;
 }
 
 void Model::SetValues(std::string state)

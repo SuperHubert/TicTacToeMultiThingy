@@ -20,13 +20,10 @@ protected:
 	HANDLE receiveThread;
 
 	bool isReady = false;
-	bool canPlay = false;
 
 	int Connect();
 	void Send(std::string message, int len);
 	void Disconnect();
-	bool IsReady();
-	bool CanPlay();
 
 public:
 	void Receive();

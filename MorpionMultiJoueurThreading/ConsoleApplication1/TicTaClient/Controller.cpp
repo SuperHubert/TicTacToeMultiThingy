@@ -17,20 +17,6 @@ Controller::~Controller()
 	delete model;
 }
 
-bool Controller::IsReady()
-{
-	Receive();
-
-	return isReady;
-}
-
-bool Controller::CanPlay()
-{
-	Receive();
-
-	return canPlay;
-}
-
 int Controller::InitConnection()
 {
 	WSADATA wsaData;
@@ -117,7 +103,8 @@ void Controller::Receive()
 	}
 	if (changePlay)
 	{
-		canPlay = true;
+		model->SetCanPlay(true);
+		model->SetforceUpdate(1);
 		return;
 	}
 	if (isBoardRefresh)
@@ -155,6 +142,8 @@ void Controller::SetModelDisplayer(ModelDisplayer* displayer)
 
 void Controller::RequestCellClick(int index)
 {
+	bool canPlay = (model->GetCanPlay());
+
 	std::cout << "Cell " << index << " click requested" << (canPlay ? " (canPlay)":"") << std::endl;
 
 	if (canPlay)
@@ -163,7 +152,7 @@ void Controller::RequestCellClick(int index)
 		Send(std::to_string(index), 1);
 		DWORD ResumeThread(HANDLE receiveThread);
 	}
-	canPlay = false;
+	model->SetCanPlay(false);
 }
 
 void Controller::RequestReset()

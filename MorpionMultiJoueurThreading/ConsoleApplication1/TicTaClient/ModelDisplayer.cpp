@@ -93,7 +93,8 @@ void ModelDisplayer::SetCurrentPlayerText(Model* model)
 	std::string str = "Player ";
 	str += std::to_string((model->GetCurrentPlayer()) - '0');
 	str += "'s turn";
-	if (model->GetCanPlay()) str += " (YOU)";
+	std::cout << "I need to refresh turn but can i play? " << ((model->GetCanPlay()) ? "true" : "false") << std::endl;
+	if (model->GetCanPlay()) str = str.append(" (YOU)");
 
 	playerTurnText->setString(str);
 	window->draw(*playerTurnText);

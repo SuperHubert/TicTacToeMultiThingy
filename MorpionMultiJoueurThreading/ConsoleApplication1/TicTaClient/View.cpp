@@ -32,7 +32,7 @@ void View::SetController(Controller* controller)
 void updateScreen(ModelDisplayer* modelDisplayer, Model* model)
 {
 	std::cout << "Model update callback" << std::endl;
-	
+
 }
 
 void View::Run()
@@ -92,7 +92,8 @@ void View::Run()
 		{
 			modelDisplayer->UpdateScreen(model);
 			version = model->GetVersion();
-			model->SetforceUpdate(0);
+			if (model->GetforceUpdate() == 1)
+				model->SetforceUpdate(0);
 		}
 	}
 

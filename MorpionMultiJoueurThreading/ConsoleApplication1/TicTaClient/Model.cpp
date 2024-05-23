@@ -7,6 +7,7 @@ Model::Model()
 		grid[i] = 0;
 	}
 	currentPlayer = '1';
+	winner = 3;
 	version = 0;
 	canPlay = false;
 }

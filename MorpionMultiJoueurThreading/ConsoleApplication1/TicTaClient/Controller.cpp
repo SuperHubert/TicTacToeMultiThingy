@@ -100,6 +100,7 @@ void Controller::Receive()
 	if (changeReady)
 	{
 		isReady = true;
+		model->SetWinner(3);
 		return;
 	}
 	if (changePlay)

@@ -176,7 +176,7 @@ void ServerController::Run()
     sockaddr_in clientAddr = { 0 };
     StartGame();
     serverData->RefreshWinner();
-    while(true)
+    while(serverData->GetWinner() == 0)
     {
         auto clientSocket = (serverData->GetCurrentPlayer() == 1) ? firstClientSocket : secondClientSocket;
 
@@ -186,4 +186,6 @@ void ServerController::Run()
 
         ProcessRequest(buffer, clientAddr);
     }
+
+    Run();
 }

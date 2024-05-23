@@ -91,8 +91,9 @@ void ModelDisplayer::DisplayCross(int x, int y, int length)
 void ModelDisplayer::SetCurrentPlayerText(Model* model)
 {
 	std::string str = "Player ";
-	str += std::to_string((model->GetCurrentPlayer()) - '0');
-	str += "'s turn";
+	str = str.append(model->GetCurrentPlayer() == '1' ? "1" : "2");
+	str = str.append("'s turn");
+
 	if (model->GetCanPlay()) str = str.append(" (YOU)");
 
 	playerTurnText->setString(str);

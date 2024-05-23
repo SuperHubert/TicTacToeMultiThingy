@@ -33,7 +33,7 @@ int Controller::InitConnection()
 		return -2;
 	}
 
-	if (Connect() == INVALID_SOCKET){
+	if (Connect() == INVALID_SOCKET) {
 		return -3;
 	};
 
@@ -82,7 +82,7 @@ void Controller::Receive()
 		return;
 	}
 
-	if(bytecount == 0)
+	if (bytecount == 0)
 	{
 		return;
 	}
@@ -97,7 +97,7 @@ void Controller::Receive()
 
 	std::cout << "Message:" << buffer /*<< (changePlay ? "' true" : "' false")*/ << std::endl;
 
-	if(changeReady)
+	if (changeReady)
 	{
 		isReady = true;
 		return;
@@ -119,19 +119,20 @@ void Controller::Receive()
 		std::cout << "receive winner" << std::endl;
 		char winner = (std::string(buffer).substr(4)).c_str()[0];
 		model->SetWinner(winner);
-		model->SetforceUpdate(1);
 		OnEndGame();
+		model->SetforceUpdate(1);
 		return;
 	}
 }
 
 void Controller::OnEndGame()
 {
-std::cout << "End game" << std::endl;
+	std::cout << "End game" << std::endl;
 	isEndGame = true;
+	model->SetCanPlay(false);
 }
 
-void Controller::Send(std::string message,int len)
+void Controller::Send(std::string message, int len)
 {
 	int bytecount = send(clientSocket, message.c_str(), len, 0);
 	if (bytecount <= 0)
@@ -156,7 +157,7 @@ void Controller::RequestCellClick(int index)
 {
 	bool canPlay = (model->GetCanPlay());
 
-	std::cout << "Cell " << index << " click requested" << (canPlay ? " (canPlay)":"") << std::endl;
+	std::cout << "Cell " << index << " click requested" << (canPlay ? " (canPlay)" : "") << std::endl;
 
 	if (canPlay)
 	{

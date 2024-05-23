@@ -50,6 +50,12 @@ void View::Run()
 
 	while (window->isOpen())
 	{
+		if (model->GetVersion() != version)
+		{
+			modelDisplayer->UpdateScreen(model);
+			version = model->GetVersion();
+		}
+
 		sf::Event event;
 		while (window->pollEvent(event))
 		{
@@ -75,12 +81,11 @@ void View::Run()
 			}
 		}
 
-		if (model->GetVersion() != version || model->GetforceUpdate() == 1)
+		if (model->GetforceUpdate() == 1)
 		{
 			modelDisplayer->UpdateScreen(model);
 			version = model->GetVersion();
-			if (model->GetforceUpdate() == 1)
-				model->SetforceUpdate(0);
+			model->SetforceUpdate(0);
 		}
 	}
 

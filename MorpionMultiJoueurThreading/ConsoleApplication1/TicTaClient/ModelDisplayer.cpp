@@ -93,7 +93,6 @@ void ModelDisplayer::SetCurrentPlayerText(Model* model)
 	std::string str = "Player ";
 	str += std::to_string((model->GetCurrentPlayer()) - '0');
 	str += "'s turn";
-	std::cout << "I need to refresh turn but can i play? " << ((model->GetCanPlay()) ? "true" : "false") << std::endl;
 	if (model->GetCanPlay()) str = str.append(" (YOU)");
 
 	playerTurnText->setString(str);
@@ -112,6 +111,13 @@ void ModelDisplayer::SetCurrentTurnText(Model* model)
 void ModelDisplayer::SetWinnerText(Model* model)
 {
 	if (model->GetWinner() == 3) return;
+	if (model->GetWinner() == '0')
+	{
+		std::cout << "It's a draw!" << std::endl;
+		winnerText->setString("It's a draw!");
+		window->draw(*winnerText);
+		return;
+	}
 	std::string str = "Player ";
 	str = str.append(model->GetWinner() == '1' ? "1" : "2");
 	str = str.append(" wins!");

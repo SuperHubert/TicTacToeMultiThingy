@@ -15,6 +15,7 @@ protected:
 	char currentPlayer = '1';
 	char version = 0;
 	char forceUpdate = 0;
+	char winner = 3;
 
 	bool canPlay = false;
 
@@ -29,7 +30,8 @@ public:
 	char GetCell(int index);
 	bool IsCellEmpty(int index);
 	int GetCurrentPlayer();
-	int GetWinner();
+	char GetWinner();
+	void SetWinner(char value);
 	int GetCurrentTurn();
 };
 

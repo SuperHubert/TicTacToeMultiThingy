@@ -93,6 +93,7 @@ void Controller::Receive()
 	bool changePlay = std::string(buffer).find("canPlay") != std::string::npos;
 	bool isBoardRefresh = std::string(buffer).find("board:") != std::string::npos;
 	bool isEndGame = std::string(buffer).find("end") != std::string::npos;
+	bool hasWinner = std::string(buffer).find("win:") != std::string::npos;
 
 	std::cout << "Message:" << buffer /*<< (changePlay ? "' true" : "' false")*/ << std::endl;
 
@@ -113,9 +114,13 @@ void Controller::Receive()
 		model->SetValues(state);
 		return;
 	}
-	if (isEndGame)
+	if (hasWinner)
 	{
-
+		std::cout << "receive winner" << std::endl;
+		char winner = (std::string(buffer).substr(4)).c_str()[0];
+		model->SetWinner(winner);
+		model->SetforceUpdate(1);
+		return;
 	}
 }
 

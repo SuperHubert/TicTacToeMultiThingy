@@ -24,6 +24,7 @@ protected:
 	sf::Font font;
 	sf::Text* playerTurnText;
 	sf::Text* currentTurnText;
+	sf::Text* winnerText;
 
 	sf::FloatRect cellBounds[9];
 
@@ -34,6 +35,7 @@ protected:
 	void DisplayCross(int x, int y, int length);
 	void SetCurrentPlayerText(Model* model);
 	void SetCurrentTurnText(Model* model);
+	void SetWinnerText(Model* model);
 
 public:
 	sf::RenderWindow* GetWindow();

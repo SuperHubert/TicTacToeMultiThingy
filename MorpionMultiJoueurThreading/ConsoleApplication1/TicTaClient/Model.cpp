@@ -61,9 +61,15 @@ int Model::GetCurrentPlayer()
     return currentPlayer;
 }
 
-int Model::GetWinner()
+char Model::GetWinner()
 {
-    return currentPlayer;
+    return winner;
+}
+
+void Model::SetWinner(char value)
+{
+	std::cout << " Normally Player " << value << " wins!" << std::endl;
+	winner = value;
 }
 
 int Model::GetCurrentTurn()

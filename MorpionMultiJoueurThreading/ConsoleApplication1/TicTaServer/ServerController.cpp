@@ -112,29 +112,31 @@ void ServerController::ProcessRequest(char* buffer, sockaddr_in& clientAddr)
     serverData->SetCurrentTurn(serverData->GetCurrentTurn() + 1);
 
     std::string message = "board:";
+
     for (int i = 0; i < 9; i++)
     {
-		message += serverData->GetCell(i) + '0';
-	}
+        message += serverData->GetCell(i) + '0';
+    }
 
     currentPlayer = serverData->GetCurrentPlayer();
 
     message += currentPlayer + '0';
 
     std::cout << message << std::endl;
-
     Send(message.c_str(), firstClientSocket);
     Send(message.c_str(), secondClientSocket);
 
-    if (serverData->GetWinner() != 0)
+    if (serverData->GetWinner() != 0 || serverData->GetCurrentTurn() == 9)
     {
-		std::cout << "Player " << serverData->GetWinner() << " wins!" << std::endl;
-		EndGame();
-	}
-    else if (serverData->GetCurrentTurn() == 9)
-    {
-		std::cout << "It's a draw!" << std::endl;
-		EndGame();
+        char winner = serverData->GetWinner() + '0';
+
+        std::string msgWin = "win:";
+        msgWin = msgWin.append(1, winner);
+
+        std::cout << "Player " << winner << " wins!" << std::endl;
+        std::cout << "sending: " << msgWin << std::endl;
+        Send(msgWin.c_str(), firstClientSocket);
+        Send(msgWin.c_str(), secondClientSocket);
 	}
 }
 
@@ -152,12 +154,6 @@ void ServerController::StartGame()
 
     Send(READY_MESSAGE, firstClientSocket);
     Send(READY_MESSAGE, secondClientSocket);
-}
-
-void ServerController::EndGame()
-{
-    Send(END_MESSAGE, firstClientSocket);
-    Send(END_MESSAGE, secondClientSocket);
 }
 
 void ServerController::CloseServer()

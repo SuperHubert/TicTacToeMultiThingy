@@ -43,12 +43,12 @@ void ServerData::RefreshWinner()
 		return;
 	}
 
-	auto check = [&](int a, int b, int c)
+	auto check = [&](char a, char b, char c)
 		{
 			return (board[a] == board[b] && board[b] == board[c] && board[a] != 0) ? board[a] : 0;
 		};
 
-	auto checkRow = [&](int a, int size, int* values)
+	auto checkRow = [&](char a, char size, char* values)
 		{
 			if (board[a] == 0) return 0;
 
@@ -63,19 +63,19 @@ void ServerData::RefreshWinner()
 			return 0;
 		};
 
-	int row1 = checkRow(0, 9, new int[9] {0, 1, 2, 0, 3, 6, 0, 4, 8});
+	char row1 = checkRow(0, 9, new char[9] {0, 1, 2, 0, 3, 6, 0, 4, 8});
 	if (row1 != 0)
 	{
 		winner = row1;
 		return;
 	}
-	int row2 = checkRow(4, 9, new int[9] {3, 4, 5, 1, 4, 7, 2, 4, 6});
+	char row2 = checkRow(4, 9, new char[9] {3, 4, 5, 1, 4, 7, 2, 4, 6});
 	if (row2 != 0)
 	{
 		winner = row2;
 		return;
 	}
-	int row3 = checkRow(8, 6, new int[6] {6, 7, 8, 2, 5, 8});
+	char row3 = checkRow(8, 6, new char[6] {6, 7, 8, 2, 5, 8});
 	winner = row3;
 }
 

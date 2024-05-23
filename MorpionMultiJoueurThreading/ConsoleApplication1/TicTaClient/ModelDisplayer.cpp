@@ -105,7 +105,8 @@ void ModelDisplayer::SetCurrentTurnText(Model* model)
 	str += std::to_string(model->GetCurrentTurn());
 
 	currentTurnText->setString(str);
-	window->draw(*currentTurnText);
+	//
+	// window->draw(*currentTurnText);
 }
 
 void ModelDisplayer::SetWinnerText(Model* model)

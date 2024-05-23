@@ -93,21 +93,29 @@ void ServerController::Receive(char* buffer, sockaddr_in& clientAddr, SOCKET cli
 void ServerController::ProcessRequest(char* buffer, sockaddr_in& clientAddr)
 {
     std::cout << "Received: " << buffer << std::endl;
-
-    int position = buffer[0] - '0';
-
-    // TODO: Check if the position is valid
-    if (serverData->GetCell(position) != 0)
+    char currentPlayer = serverData->GetCurrentPlayer();
+    if (std::string(buffer).find("reset") != std::string::npos)
     {
-        std::cout<< "Invalid move" << std::endl;
-        return;
+		ResetBoard();
+		//StartGame();
+	}
+    else
+    {
+        int position = buffer[0] - '0';
+
+        // TODO: Check if the position is valid
+        if (serverData->GetCell(position) != 0)
+        {
+            std::cout << "Invalid move" << std::endl;
+            return;
+        }
+        serverData->SetCell(position, currentPlayer);
+        serverData->RefreshWinner();
     }
 
-    char currentPlayer = serverData->GetCurrentPlayer();
+    currentPlayer = serverData->GetCurrentPlayer();
     std::cout << "Current player: " << currentPlayer << std::endl;
 
-    serverData->SetCell(position, currentPlayer);
-    serverData->RefreshWinner();
 
     serverData->SetCurrentTurn(serverData->GetCurrentTurn() + 1);
 

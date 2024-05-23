@@ -31,7 +31,6 @@ protected:
 	void ProcessRequest(char* buffer, sockaddr_in& clientAddr);
 	void ResetBoard();
 	void StartGame();
-	void EndGame();
 	void CloseServer();
 
 public:

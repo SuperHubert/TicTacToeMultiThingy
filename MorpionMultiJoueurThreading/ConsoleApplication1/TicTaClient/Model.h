@@ -33,5 +33,6 @@ public:
 	char GetWinner();
 	void SetWinner(char value);
 	int GetCurrentTurn();
+	void Reset();
 };
 

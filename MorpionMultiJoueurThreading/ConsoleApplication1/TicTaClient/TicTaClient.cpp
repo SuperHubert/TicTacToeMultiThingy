@@ -20,9 +20,5 @@ int main()
 
     RunView(view);
 
-    // TODO - add indicator if its your turn
-    // TODO - add indicator if you won
-    // TODO - add indicator if you lost
-    // TODO - add indicator if its a draw
     // TODO - add restart mechanic
 }

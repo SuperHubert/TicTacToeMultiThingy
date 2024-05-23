@@ -76,3 +76,15 @@ int Model::GetCurrentTurn()
 {
 	return version;
 }
+
+void Model::Reset()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		grid[i] = 0;
+	}
+	currentPlayer = '1';
+	version = 0;
+	canPlay = false;
+	winner = 3;
+}

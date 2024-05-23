@@ -20,6 +20,7 @@ protected:
 	HANDLE receiveThread;
 
 	bool isReady = false;
+	bool isEndGame = false;
 
 	int Connect();
 	void Send(std::string message, int len);
@@ -27,6 +28,7 @@ protected:
 
 public:
 	void Receive();
+	void OnEndGame();
 	int InitConnection();
 	void InitReceiveThread();
 	void SetModelDisplayer(ModelDisplayer*);

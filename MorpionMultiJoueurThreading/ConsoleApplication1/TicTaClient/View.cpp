@@ -42,19 +42,6 @@ void View::Run()
 		std::cout << "Controller not set" << std::endl;
 		return;
 	}
-	/*
-	ModelDisplayer* displayer = modelDisplayer;
-	Model* model = controller->GetModel();
-
-	auto f1 = [displayer, model]()
-	{
-		displayer->UpdateScreen(model);
-	};
-
-	//model->callback = &f1;
-
-	f1();
-	*/
 
 	Model* model = controller->GetModel();
 

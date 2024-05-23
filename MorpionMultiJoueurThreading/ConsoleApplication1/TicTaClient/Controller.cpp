@@ -120,8 +120,15 @@ void Controller::Receive()
 		char winner = (std::string(buffer).substr(4)).c_str()[0];
 		model->SetWinner(winner);
 		model->SetforceUpdate(1);
+		OnEndGame();
 		return;
 	}
+}
+
+void Controller::OnEndGame()
+{
+std::cout << "End game" << std::endl;
+	isEndGame = true;
 }
 
 void Controller::Send(std::string message,int len)
@@ -163,6 +170,11 @@ void Controller::RequestCellClick(int index)
 void Controller::RequestReset()
 {
 	std::cout << "Reset requested" << std::endl;
+	if (isEndGame)
+	{
+		Send("reset", 5);
+		isEndGame = false;
+	}
 }
 
 Model* Controller::GetModel()
